@@ -12,10 +12,6 @@
       <button id="botao">Cadastrar</button>
     </div>
     <script type="text/javascript">
-      var elLista = document.getElementById("lista");
-      var elCampo = document.getElementById("campo");
-      var elBotao = document.getElementById("botao");
-
       var convidados = [
         { nome: "Bruno de Souza" },
         { nome: "Jefferson Andrade" },
@@ -23,21 +19,11 @@
         { nome: "José da Silva" }
       ];
 
-      function listarConvidados() {
-        elLista.innerHTML = "";
+      var elLista = document.getElementById("lista");
+      var elCampo = document.getElementById("campo");
+      var elBotao = document.getElementById("botao");
 
-        for (convidado of convidados) {
-          var elConvidado = document.createElement("li");
-          var elNome = document.createTextNode(convidado.nome);
-
-          elConvidado.appendChild(elNome);
-          elLista.appendChild(elConvidado);
-        }
-      }
-
-      listarConvidados();
-
-      var adicionarConvidado = function() {
+      elBotao.onclick = function() {
         var nome = elCampo.value;
         convidados.push({ nome: nome });
         elCampo.value = "";
@@ -45,7 +31,33 @@
         listarConvidados();
       };
 
-      elBotao.onclick = adicionarConvidado;
+      function listarConvidados() {
+        elLista.innerHTML = "";
+
+        for (const convidado of convidados) {
+          var elConvidado = document.createElement("li");
+          var elNome = document.createTextNode(convidado.nome);
+
+          var elExcluir = document.createElement("a");
+          elExcluir.setAttribute("href", "#");
+          elExcluir.onclick = function() {
+            convidados = convidados.filter(function(item) {
+              return item.nome !== convidado.nome;
+            });
+
+            listarConvidados();
+          };
+
+          var elExcluirTexto = document.createTextNode("Excluir");
+
+          elExcluir.appendChild(elExcluirTexto);
+          elConvidado.appendChild(elNome);
+          elConvidado.appendChild(elExcluir);
+          elLista.appendChild(elConvidado);
+        }
+      }
+
+      listarConvidados();
     </script>
   </body>
 </html>
