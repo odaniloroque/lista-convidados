@@ -6,26 +6,21 @@
   <body>
     <div id="app">
       <h1>Lista de Convidados</h1>
-      <ul>
-        <li>
-          Pedrozo da Silva
-          <a href="#">Excluir</a>
-        </li>
-        <li>
-          Maria José
-          <a href="#">Excluir</a>
-        </li>
-        <li>
-          Bruno Silva
-          <a href="#">Excluir</a>
-        </li>
-      </ul>
+      <ul id="lista"></ul>
 
-      <input type="text" placeholder="Digite o nome do convidado" />
-      <button>Cadastrar</button>
+      <input id="campo" type="text" placeholder="Digite o nome do convidado" />
+      <button id="botao">Cadastrar</button>
     </div>
     <script type="text/javascript">
-      // código js
+      var lista = document.getElementById("lista");
+      var campo = document.getElementById("campo");
+      var botao = document.getElementById("botao");
+
+      var convidados = [
+        { id: 1, nome: "Bruno de Souza", idade: 28 },
+        { id: 2, nome: "Jefferson Andrade", idade: 18 },
+        { id: 3, nome: "Maria José", idade: 13 }
+      ];
     </script>
   </body>
 </html>
